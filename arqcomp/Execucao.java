@@ -5,8 +5,7 @@ public class Execucao {
         String receberlinha = "00000010001100100100000000100000";
         char [] array = receberlinha.toCharArray();
         String opcode = "" + array[0] + array[1] + array[2] + array[3] + array[4] + array[5];
-        
-        //System.out.print (palavra);
+        //21 a 25 shamt
         switch (opcode) {
             case "000000":
                 System.out.println(array);
@@ -151,6 +150,51 @@ public class Execucao {
             default:
                 return "ra";
         }
-        }    
+        }
+        public static String getFunction (String reg1, String reg2, String reg3, String Shamt, String function){
+            switch (function) {
+                case "000000":
+                    String registrador1 = NumRegistrador(reg1);
+                    String registrador2 = NumRegistrador(reg2);
+                    int ra = getShamt(Shamt);
+                    return "sll " + registrador1 + ", "  + registrador2 + ", "  + ra;
+                case "000010":
+                    registrador1 = NumRegistrador(reg1);
+                    registrador2 = NumRegistrador(reg2);
+                    int RA = getShamt(Shamt);
+                    return "srl " + registrador1 + ", "  + registrador2 + ", "  + RA;
+                case "001000":
+                    registrador1 = NumRegistrador(reg1);
+                    return "jr " + registrador1;
+                case "100000":
+                    registrador1 = NumRegistrador(reg1);
+                    registrador2 = NumRegistrador(reg2);
+                    String registrador3 = NumRegistrador(reg3);
+                    return "add " + registrador1 + ", " + registrador2 + ", "  + registrador3;
+                case "100010":
+                    registrador1 = NumRegistrador(reg1);
+                    registrador2 = NumRegistrador(reg2);
+                    registrador3 = NumRegistrador(reg3);
+                    return "sub " + registrador1 + ", " + registrador2 + ", "  + registrador3;
+                case "100100":registrador1 = NumRegistrador(reg1);
+                    registrador2 = NumRegistrador(reg2);
+                    registrador3 = NumRegistrador(reg3);
+                    return "and " + registrador1 + ", " + registrador2 + ", "  + registrador3;
+                case "100101":registrador1 = NumRegistrador(reg1);
+                    registrador2 = NumRegistrador(reg2);
+                    registrador3 = NumRegistrador(reg3);
+                    return "or " + registrador1 + ", " + registrador2 + ", "  + registrador3;
+                case "100110":registrador1 = NumRegistrador(reg1);
+                    registrador2 = NumRegistrador(reg2);
+                    registrador3 = NumRegistrador(reg3);
+                    return "xor " + registrador1 + ", " + registrador2 + ", "  + registrador3;
+                default:
+                    return"";
+            }
+        }
+        public static int getShamt (String a){
+            int num = Integer.parseInt(a, 2);
+            return num;
+        }
     
 }
