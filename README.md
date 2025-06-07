@@ -11,3 +11,5 @@ Como funciona
 - Cria um novo arquivo chamado `TESTE-XX-RESULTADO.txt`.
 - Por enquanto, o conteúdo do resultado é igual ao original — ainda não estamos mexendo no conteúdo.
 
+Modificações do dia 07/06
+
