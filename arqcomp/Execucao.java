@@ -2,20 +2,44 @@ package arqcomp;
 
 public class Execucao {
         public static void main(String[] args) {
-        String receberlinha = "00000010001100100100000000100000";
+        String receberlinha = "10101101001010000000010010110000";
         char [] array = receberlinha.toCharArray();
         String opcode = "" + array[0] + array[1] + array[2] + array[3] + array[4] + array[5];
-        //21 a 25 shamt
+        String Resul;
+        /*
+        0 a 5 opcode 
+
+        Tipo R e I:
+        6 a 10 reg1
+        11 a 15 reg2
+
+        tipo R
+        16 a 20 reg3
+        21 a 25 shamt
+        26 a 31 function
+
+        tipo I:
+        15 a 31 imediato
+
+        Tipo J:
+        6 a 31 adress
+        */
         switch (opcode) {
             case "000000":
-                System.out.println(array);
-                String reg1 = "" + array[6]+ array[7] + array[8] + array[9] + array [10];; 
-                reg1 = NumRegistrador(reg1);
-                System.out.println(reg1);
+                String regis1 =  new String(array, 6, 5);
+                String regis2 = new String(array, 11, 5);
+                String regis3 = new String (array, 16, 5);
+                String shamt = new String(array, 21, 5);
+                String Function = new String(array, 26, 6);
+                Resul = getFunction(regis1, regis2, regis3, shamt, Function);
+                System.out.println(Resul);
                 break;
     
             case "000010":
-    
+                int instrução = Integer.parseInt((new String (array, 6, 26)), 2);
+                instrução = instrução * 4;
+                Resul = "j " + instrução;
+                System.out.println(Resul);
                 break;
     
             case "000100":
@@ -63,7 +87,11 @@ public class Execucao {
                 break;
     
             case "100011":
-    
+                regis1 =  new String(array, 6, 5);
+                regis2 = new String(array, 11, 5);
+                String imediato = new String(array, 16, 16);
+                Resul = getImmediate(opcode, regis1, regis2, imediato);
+                System.out.println(Resul);
                 break;
     
             case "101000":
@@ -75,7 +103,11 @@ public class Execucao {
                 break;
     
             case "101011":
-            
+                regis1 =  new String(array, 6, 5);
+                regis2 = new String(array, 11, 5);
+                imediato = new String(array, 16, 16);
+                Resul = getImmediate(opcode, regis1, regis2, imediato);
+                System.out.println(Resul);
                 break;
     
             default:
@@ -170,24 +202,24 @@ public class Execucao {
                     registrador1 = NumRegistrador(reg1);
                     registrador2 = NumRegistrador(reg2);
                     String registrador3 = NumRegistrador(reg3);
-                    return "add " + registrador1 + ", " + registrador2 + ", "  + registrador3;
+                    return "add " + registrador3 + ", " + registrador1 + ", "  + registrador2;
                 case "100010":
                     registrador1 = NumRegistrador(reg1);
                     registrador2 = NumRegistrador(reg2);
                     registrador3 = NumRegistrador(reg3);
-                    return "sub " + registrador1 + ", " + registrador2 + ", "  + registrador3;
+                    return "sub " + registrador3 + ", " + registrador1 + ", "  + registrador2;
                 case "100100":registrador1 = NumRegistrador(reg1);
                     registrador2 = NumRegistrador(reg2);
                     registrador3 = NumRegistrador(reg3);
-                    return "and " + registrador1 + ", " + registrador2 + ", "  + registrador3;
+                    return "and " + registrador3 + ", " + registrador1 + ", "  + registrador2;
                 case "100101":registrador1 = NumRegistrador(reg1);
                     registrador2 = NumRegistrador(reg2);
                     registrador3 = NumRegistrador(reg3);
-                    return "or " + registrador1 + ", " + registrador2 + ", "  + registrador3;
+                    return "or " + registrador3 + ", " + registrador1 + ", "  + registrador2;
                 case "100110":registrador1 = NumRegistrador(reg1);
                     registrador2 = NumRegistrador(reg2);
                     registrador3 = NumRegistrador(reg3);
-                    return "xor " + registrador1 + ", " + registrador2 + ", "  + registrador3;
+                    return "xor " + registrador3 + ", " + registrador1 + ", "  + registrador2;
                 default:
                     return"";
             }
@@ -203,11 +235,11 @@ public class Execucao {
             int valor = Integer.parseInt(immediate, 2);
             
             switch (immediate) {
-                case "0000000011000000": 
+                case "0000010010110000": 
                     if (opcode.equals("100011")) {
-                        return "lw " + registrador1 + ", " + valor + "(" + registrador2 + ")";
+                        return "lw " + registrador2 + ", " + valor + "(" + registrador1 + ")";
                     } else if (opcode.equals("101011")) {
-                        return "sw " + registrador1 + ", " + valor + "(" + registrador2 + ")";
+                        return "sw " + registrador2 + ", " + valor + "(" + registrador1 + ")";
                     }
                     break;
         
