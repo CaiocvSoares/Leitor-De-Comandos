@@ -234,44 +234,28 @@ public class Execucao {
             String registrador2 = NumRegistrador(reg2);
             int valor = Integer.parseInt(immediate, 2);
             
-            switch (immediate) {
-                case "0000010010110000": 
-                    if (opcode.equals("100011")) {
-                        return "lw " + registrador2 + ", " + valor + "(" + registrador1 + ")";
-                    } else if (opcode.equals("101011")) {
-                        return "sw " + registrador2 + ", " + valor + "(" + registrador1 + ")";
-                    }
-                    break;
-        
-                case "0000000000110110": 
-                    if (opcode.equals("001000")) {
+            switch (opcode) {
+                case "100011": 
+                    return "lw " + registrador2 + ", " + valor + "(" + registrador1 + ")";
+                
+                case "101011":
+                    return "sw " + registrador2 + ", " + valor + "(" + registrador1 + ")";
+
+                case "001000": 
                         return "addi " + registrador1 + ", " + registrador2 + ", " + valor;
-                    }
-                    break;
         
-                case "0000000000001100": 
-                    if (opcode.equals("001100")) {
+                case "001100": 
                         return "andi " + registrador1 + ", " + registrador2 + ", " + valor;
-                    }
-                    break;
         
-                case "0000000000010010": 
-                    if (opcode.equals("001101")) {
+                case "001101": 
                         return "ori " + registrador1 + ", " + registrador2 + ", " + valor;
-                    }
-                    break;
-        
-                case "0000000000001000": 
-                    if (opcode.equals("000100")) {
+  
+                case "000100": 
                         return "beq " + registrador1 + ", " + registrador2 + ", " + valor;
-                    }
-                    break;
         
-                case "1111111111111000": 
-                    if (opcode.equals("000101")) {
+                case "000101": 
                         return "bne " + registrador1 + ", " + registrador2 + ", " + valor;
-                    }
-                    break;
+                 
             }
         
             return "Instrução não reconhecida";
