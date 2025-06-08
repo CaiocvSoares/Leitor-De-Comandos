@@ -3,169 +3,53 @@ package arqcomp;
 public class Execucao {
         public static void main(String[] args) {
         String receberlinha = "10001101001010000000000000000100";
-        char [] array = receberlinha.toCharArray();
-        String opcode = "" + array[0] + array[1] + array[2] + array[3] + array[4] + array[5];
-        String Resul;
-        /*
-        0 a 5 opcode 
-
-        Tipo R e I:
-        6 a 10 reg1
-        11 a 15 reg2
-
-        tipo R
-        16 a 20 reg3
-        21 a 25 shamt
-        26 a 31 function
-
-        tipo I:
-        15 a 31 imediato
-
-        Tipo J:
-        6 a 31 adress
-        */
-        switch (opcode) {
-            case "000000":
-                String regis1 =  new String(array, 6, 5);
-                String regis2 = new String(array, 11, 5);
-                String regis3 = new String (array, 16, 5);
-                String shamt = new String(array, 21, 5);
-                String Function = new String(array, 26, 6);
-                Resul = getFunction(regis1, regis2, regis3, shamt, Function);
-                System.out.println(Resul);
-                break;
-    
-            case "000010":
-                int instrução = Integer.parseInt((new String (array, 6, 26)), 2);
-                instrução = instrução * 4;
-                Resul = "j " + instrução;
-                System.out.println(Resul);
-                break;
-    
-            case "000100":
-                regis1 =  new String(array, 6, 5);
-                regis2 = new String(array, 11, 5);
-                String imediato = new String(array, 16, 16);
-                Resul = getImmediate(opcode, regis1, regis2, imediato);
-                System.out.println(Resul);
-                break;
-    
-            case "000101":
-                regis1 =  new String(array, 6, 5);
-                regis2 = new String(array, 11, 5);
-                imediato = new String(array, 16, 16);
-                Resul = getImmediate(opcode, regis1, regis2, imediato);
-                System.out.println(Resul);
-                break;
-                
-            case "000110":
-                regis1 =  new String(array, 6, 5);
-                regis2 = new String(array, 11, 5);
-                imediato = new String(array, 16, 16);
-                Resul = getImmediate(opcode, regis1, regis2, imediato);
-                System.out.println(Resul);
-                break;
-    
-            case "000111":
-                regis1 =  new String(array, 6, 5);
-                regis2 = new String(array, 11, 5);
-                imediato = new String(array, 16, 16);
-                Resul = getImmediate(opcode, regis1, regis2, imediato);
-                System.out.println(Resul);
-                break;
-    
-            case "001000":
-                regis1 =  new String(array, 6, 5);
-                regis2 = new String(array, 11, 5);
-                imediato = new String(array, 16, 16);
-                Resul = getImmediate(opcode, regis1, regis2, imediato);
-                System.out.println(Resul);
-                break; 
-    
-            case "001100":
-                regis1 =  new String(array, 6, 5);
-                regis2 = new String(array, 11, 5);
-                imediato = new String(array, 16, 16);
-                Resul = getImmediate(opcode, regis1, regis2, imediato);
-                System.out.println(Resul);
-                break;
-    
-            case "001101":
-                regis1 =  new String(array, 6, 5);
-                regis2 = new String(array, 11, 5);
-                imediato = new String(array, 16, 16);
-                Resul = getImmediate(opcode, regis1, regis2, imediato);
-                System.out.println(Resul);
-                break;
-    
-            case "001110":
-                regis1 =  new String(array, 6, 5);
-                regis2 = new String(array, 11, 5);
-                imediato = new String(array, 16, 16);
-                Resul = getImmediate(opcode, regis1, regis2, imediato);
-                System.out.println(Resul);
-                break;
-    
-            case "001111":
-                regis1 =  new String(array, 6, 5);
-                regis2 = new String(array, 11, 5);
-                imediato = new String(array, 16, 16);
-                Resul = getImmediate(opcode, regis1, regis2, imediato);
-                System.out.println(Resul);
-                break;
-    
-            case "100000":
-                regis1 =  new String(array, 6, 5);
-                regis2 = new String(array, 11, 5);
-                imediato = new String(array, 16, 16);
-                Resul = getImmediate(opcode, regis1, regis2, imediato);
-                System.out.println(Resul);
-                break;
-    
-            case "100001":
-                regis1 =  new String(array, 6, 5);
-                regis2 = new String(array, 11, 5);
-                imediato = new String(array, 16, 16);
-                Resul = getImmediate(opcode, regis1, regis2, imediato);
-                System.out.println(Resul);
-                break;
-    
-            case "100011":
-                regis1 =  new String(array, 6, 5);
-                regis2 = new String(array, 11, 5);
-                imediato = new String(array, 16, 16);
-                Resul = getImmediate(opcode, regis1, regis2, imediato);
-                System.out.println(Resul);
-                break;
-    
-            case "101000":
-                regis1 =  new String(array, 6, 5);
-                regis2 = new String(array, 11, 5);
-                imediato = new String(array, 16, 16);
-                Resul = getImmediate(opcode, regis1, regis2, imediato);
-                System.out.println(Resul);
-                break;
-    
-            case "101001":
-                regis1 =  new String(array, 6, 5);
-                regis2 = new String(array, 11, 5);
-                imediato = new String(array, 16, 16);
-                Resul = getImmediate(opcode, regis1, regis2, imediato);
-                System.out.println(Resul);
-                break;
-    
-            case "101011":
-                regis1 =  new String(array, 6, 5);
-                regis2 = new String(array, 11, 5);
-                imediato = new String(array, 16, 16);
-                Resul = getImmediate(opcode, regis1, regis2, imediato);
-                System.out.println(Resul);
-                break;
-    
-            default:
-                System.out.println("Tipo de instrução não reconhecida.");
-                break;
+        String resultado = decodificarInstrucao(receberlinha);
+        System.out.println(resultado);
         }
+        
+        public static String decodificarInstrucao(String receberlinha){
+            if (receberlinha.length() != 32) return "Instrução inválida";
+            char [] array = receberlinha.toCharArray();
+            String opcode = new String(array, 0, 6);
+            
+            String regis1, regis2, imediato;
+            /*
+            0 a 5 opcode 
+    
+            Tipo R e I:
+            6 a 10 reg1
+            11 a 15 reg2
+    
+            tipo R
+            16 a 20 reg3
+            21 a 25 shamt
+            26 a 31 function
+    
+            tipo I:
+            15 a 31 imediato
+    
+            Tipo J:
+            6 a 31 adress
+            */
+            switch (opcode) {
+                case "000000":
+                    String reg1 = new String(array, 6, 5);
+                    String reg2 = new String(array, 11, 5);
+                    String reg3 = new String(array, 16, 5);
+                    String shamt = new String(array, 21, 5);
+                    String funct = new String(array, 26, 6);
+                    return getFunction(reg1, reg2, reg3, shamt, funct);
+    
+                case "000010":
+                    int instrucao = Integer.parseInt(new String(array, 6, 26), 2) * 4;
+                    return "j " + instrucao;
+    
+                default:
+                    regis1 = new String(array, 6, 5);
+                    regis2 = new String(array, 11, 5);
+                    imediato = new String(array, 16, 16);
+                    return getImmediate(opcode, regis1, regis2, imediato);
+            }
         }
         public static String NumRegistrador (String a){
         switch (a) {
@@ -289,27 +173,51 @@ public class Execucao {
             switch (opcode) {
                 case "100011": 
                     return "lw " + registrador2 + ", " + valor + "(" + registrador1 + ")";
-                
-                case "101011":
+            
+                case "101011": 
                     return "sw " + registrador2 + ", " + valor + "(" + registrador1 + ")";
-
-                case "001000": 
-                        return "addi " + registrador1 + ", " + registrador2 + ", " + valor;
-        
+            
+                case "001000":
+                    return "addi " + registrador1 + ", " + registrador2 + ", " + valor;
+            
                 case "001100": 
-                        return "andi " + registrador1 + ", " + registrador2 + ", " + valor;
-        
+                    return "andi " + registrador1 + ", " + registrador2 + ", " + valor;
+            
                 case "001101": 
-                        return "ori " + registrador1 + ", " + registrador2 + ", " + valor;
-  
+                    return "ori " + registrador1 + ", " + registrador2 + ", " + valor;
+            
                 case "000100": 
-                        return "beq " + registrador1 + ", " + registrador2 + ", " + valor;
-        
+                    return "beq " + registrador1 + ", " + registrador2 + ", " + valor;
+            
                 case "000101": 
-                        return "bne " + registrador1 + ", " + registrador2 + ", " + valor;
-                 
+                    return "bne " + registrador1 + ", " + registrador2 + ", " + valor;
+            
+                case "000110": 
+                    return "blez " + registrador1 + ", " + registrador2 + ", " + valor;
+            
+                case "000111": 
+                    return "bgtz " + registrador1 + ", " + registrador2 + ", " + valor;
+            
+                case "001110": 
+                    return "xori " + registrador1 + ", " + registrador2 + ", " + valor;
+            
+                case "001111": 
+                    return "lui " + registrador1 + ", " + registrador2 + ", " + valor;
+            
+                case "100000": 
+                    return "lb " + registrador1 + ", " + registrador2 + ", " + valor;
+            
+                case "100001": 
+                    return "lh " + registrador1 + ", " + registrador2 + ", " + valor;
+            
+                case "101000": 
+                    return "sb " + registrador1 + ", " + registrador2 + ", " + valor;
+            
+                case "101001": 
+                    return "sh " + registrador1 + ", " + registrador2 + ", " + valor;
             }
+            
         
             return "Instrução não reconhecida";
         }
-}
+}   
