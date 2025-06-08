@@ -2,7 +2,7 @@ package arqcomp;
 
 public class Execucao {
         public static void main(String[] args) {
-        String receberlinha = "10101101001010000000010010110000";
+        String receberlinha = "10001101001010000000000000000100";
         char [] array = receberlinha.toCharArray();
         String opcode = "" + array[0] + array[1] + array[2] + array[3] + array[4] + array[5];
         String Resul;
@@ -43,50 +43,6 @@ public class Execucao {
                 break;
     
             case "000100":
-    
-                break;
-    
-            case "000101":
-    
-                break;
-                
-            case "000110":
-    
-                break;
-    
-            case "000111":
-    
-                break;
-    
-            case "001000":
-    
-                break; 
-    
-            case "001100":
-    
-                break;
-    
-            case "001101":
-    
-                break;
-    
-            case "001110":
-    
-                break;
-    
-            case "001111":
-    
-                break;
-    
-            case "100000":
-    
-                break;
-    
-            case "100001":
-    
-                break;
-    
-            case "100011":
                 regis1 =  new String(array, 6, 5);
                 regis2 = new String(array, 11, 5);
                 String imediato = new String(array, 16, 16);
@@ -94,12 +50,108 @@ public class Execucao {
                 System.out.println(Resul);
                 break;
     
-            case "101000":
+            case "000101":
+                regis1 =  new String(array, 6, 5);
+                regis2 = new String(array, 11, 5);
+                imediato = new String(array, 16, 16);
+                Resul = getImmediate(opcode, regis1, regis2, imediato);
+                System.out.println(Resul);
+                break;
+                
+            case "000110":
+                regis1 =  new String(array, 6, 5);
+                regis2 = new String(array, 11, 5);
+                imediato = new String(array, 16, 16);
+                Resul = getImmediate(opcode, regis1, regis2, imediato);
+                System.out.println(Resul);
+                break;
     
+            case "000111":
+                regis1 =  new String(array, 6, 5);
+                regis2 = new String(array, 11, 5);
+                imediato = new String(array, 16, 16);
+                Resul = getImmediate(opcode, regis1, regis2, imediato);
+                System.out.println(Resul);
+                break;
+    
+            case "001000":
+                regis1 =  new String(array, 6, 5);
+                regis2 = new String(array, 11, 5);
+                imediato = new String(array, 16, 16);
+                Resul = getImmediate(opcode, regis1, regis2, imediato);
+                System.out.println(Resul);
+                break; 
+    
+            case "001100":
+                regis1 =  new String(array, 6, 5);
+                regis2 = new String(array, 11, 5);
+                imediato = new String(array, 16, 16);
+                Resul = getImmediate(opcode, regis1, regis2, imediato);
+                System.out.println(Resul);
+                break;
+    
+            case "001101":
+                regis1 =  new String(array, 6, 5);
+                regis2 = new String(array, 11, 5);
+                imediato = new String(array, 16, 16);
+                Resul = getImmediate(opcode, regis1, regis2, imediato);
+                System.out.println(Resul);
+                break;
+    
+            case "001110":
+                regis1 =  new String(array, 6, 5);
+                regis2 = new String(array, 11, 5);
+                imediato = new String(array, 16, 16);
+                Resul = getImmediate(opcode, regis1, regis2, imediato);
+                System.out.println(Resul);
+                break;
+    
+            case "001111":
+                regis1 =  new String(array, 6, 5);
+                regis2 = new String(array, 11, 5);
+                imediato = new String(array, 16, 16);
+                Resul = getImmediate(opcode, regis1, regis2, imediato);
+                System.out.println(Resul);
+                break;
+    
+            case "100000":
+                regis1 =  new String(array, 6, 5);
+                regis2 = new String(array, 11, 5);
+                imediato = new String(array, 16, 16);
+                Resul = getImmediate(opcode, regis1, regis2, imediato);
+                System.out.println(Resul);
+                break;
+    
+            case "100001":
+                regis1 =  new String(array, 6, 5);
+                regis2 = new String(array, 11, 5);
+                imediato = new String(array, 16, 16);
+                Resul = getImmediate(opcode, regis1, regis2, imediato);
+                System.out.println(Resul);
+                break;
+    
+            case "100011":
+                regis1 =  new String(array, 6, 5);
+                regis2 = new String(array, 11, 5);
+                imediato = new String(array, 16, 16);
+                Resul = getImmediate(opcode, regis1, regis2, imediato);
+                System.out.println(Resul);
+                break;
+    
+            case "101000":
+                regis1 =  new String(array, 6, 5);
+                regis2 = new String(array, 11, 5);
+                imediato = new String(array, 16, 16);
+                Resul = getImmediate(opcode, regis1, regis2, imediato);
+                System.out.println(Resul);
                 break;
     
             case "101001":
-    
+                regis1 =  new String(array, 6, 5);
+                regis2 = new String(array, 11, 5);
+                imediato = new String(array, 16, 16);
+                Resul = getImmediate(opcode, regis1, regis2, imediato);
+                System.out.println(Resul);
                 break;
     
             case "101011":
