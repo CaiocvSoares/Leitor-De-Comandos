@@ -1,50 +1,45 @@
 package arqcomp;
-import java.io.File;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class Main {
-
     public static void main(String[] args) {
-        String nomeDoArquivo = "caio1.txt";
 
-        File pendrive = new File("E:\\"); // Unidade do pendrive
+        String diretorio = "E:\\";
 
-        if (!pendrive.exists() || !pendrive.isDirectory()) {
-            System.out.println("Unidade E:\\ não encontrada.");
-            return;
-        }
+        for (int i = 1; i <= 10; i++) {
+            String numero = String.format("%02d", i); 
+            String nomeEntrada = "TESTE-" + numero + ".txt";
+            String nomeSaida = "TESTE-" + numero + "-RESULTADO.txt";
+            String resultado = "";
 
-        File arquivoEncontrado = buscarArquivoRecursivo(pendrive, nomeDoArquivo);
+            Path caminhoEntrada = Paths.get(diretorio, nomeEntrada);
+            Path caminhoSaida = Paths.get(diretorio, nomeSaida);
 
-        if (arquivoEncontrado != null) {
-            System.out.println("Arquivo encontrado em: " + arquivoEncontrado.getAbsolutePath());
+            try (
+                BufferedReader leitor = Files.newBufferedReader(caminhoEntrada, StandardCharsets.UTF_8);
+                BufferedWriter escritor = Files.newBufferedWriter(caminhoSaida, StandardCharsets.UTF_8)
+            ){
+                String linha;
+                while ((linha = leitor.readLine()) != null) {
+                    Execucao objeto = new Execucao();
+                    resultado = objeto.decodificarInstrucao(linha);
+                    escritor.write(resultado);
+                    escritor.newLine();
+                }
+                System.out.println("Gerado: " + nomeSaida);
 
-            try {
-                String conteudo = Files.readString(arquivoEncontrado.toPath());
-                System.out.println("Conteúdo do arquivo:\n" + conteudo);
             } catch (IOException e) {
-                System.out.println("Erro ao ler o arquivo: " + e.getMessage());
-            }
-        } else {
-            System.out.println("Arquivo não encontrado na unidade E:\\");
-        }
-    }
-
-    public static File buscarArquivoRecursivo(File dir, String nomeDoArquivo) {
-        if (!dir.canRead()) return null;
-
-        File[] arquivos = dir.listFiles();
-        if (arquivos == null) return null;
-
-        for (File f : arquivos) {
-            if (f.isDirectory()) {
-                File resultado = buscarArquivoRecursivo(f, nomeDoArquivo);
-                if (resultado != null) return resultado;
-            } else if (f.getName().equalsIgnoreCase(nomeDoArquivo)) {
-                return f;
+                System.err.println("Erro ao processar " + nomeEntrada + ": " + e.getMessage());
             }
         }
-        return null;
+
+        System.out.println("Todos os arquivos foram processados.");
     }
 }

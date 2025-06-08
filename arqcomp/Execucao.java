@@ -1,12 +1,6 @@
 package arqcomp;
 
 public class Execucao {
-        public static void main(String[] args) {
-        String receberlinha = "10001101001010000000000000000100";
-        String resultado = decodificarInstrucao(receberlinha);
-        System.out.println(resultado);
-        }
-        
         public static String decodificarInstrucao(String receberlinha){
             if (receberlinha.length() != 32) return "Instrução inválida";
             char [] array = receberlinha.toCharArray();
