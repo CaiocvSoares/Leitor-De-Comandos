@@ -154,56 +154,41 @@ public class Execucao {
         public static String getImmediate(String opcode, String reg1, String reg2, String immediate) {
             String registrador1 = NumRegistrador(reg1);
             String registrador2 = NumRegistrador(reg2);
-            int valor = Integer.parseInt(immediate, 2);
-            
-            switch (opcode) {
-                case "100011": 
-                    return "lw " + registrador2 + ", " + valor + "(" + registrador1 + ")";
-            
-                case "101011": 
-                    return "sw " + registrador2 + ", " + valor + "(" + registrador1 + ")";
-            
-                case "001000":
-                    return "addi " + registrador1 + ", " + registrador2 + ", " + valor;
-            
-                case "001100": 
-                    return "andi " + registrador1 + ", " + registrador2 + ", " + valor;
-            
-                case "001101": 
-                    return "ori " + registrador1 + ", " + registrador2 + ", " + valor;
-            
-                case "000100": 
-                    return "beq " + registrador1 + ", " + registrador2 + ", " + valor;
-            
-                case "000101": 
-                    return "bne " + registrador1 + ", " + registrador2 + ", " + valor;
-            
-                case "000110": 
-                    return "blez " + registrador1 + ", " + registrador2 + ", " + valor;
-            
-                case "000111": 
-                    return "bgtz " + registrador1 + ", " + registrador2 + ", " + valor;
-            
-                case "001110": 
-                    return "xori " + registrador1 + ", " + registrador2 + ", " + valor;
-            
-                case "001111": 
-                    return "lui " + registrador1 + ", " + registrador2 + ", " + valor;
-            
-                case "100000": 
-                    return "lb " + registrador1 + ", " + registrador2 + ", " + valor;
-            
-                case "100001": 
-                    return "lh " + registrador1 + ", " + registrador2 + ", " + valor;
-            
-                case "101000": 
-                    return "sb " + registrador1 + ", " + registrador2 + ", " + valor;
-            
-                case "101001": 
-                    return "sh " + registrador1 + ", " + registrador2 + ", " + valor;
-            }
-            
+            int valor = (short) Integer.parseInt(immediate, 2);
         
+            switch (opcode) {
+                case "100011":
+                    return "lw " + registrador2 + ", " + valor + "(" + registrador1 + ")";
+                case "101011":
+                    return "sw " + registrador2 + ", " + valor + "(" + registrador1 + ")";
+                case "001000":
+                    return "addi " + registrador2 + ", " + registrador1 + ", " + valor;
+                case "001100":
+                    return "andi " + registrador2 + ", " + registrador1 + ", " + valor;
+                case "001101":
+                    return "ori " + registrador2 + ", " + registrador1 + ", " + valor;
+                case "001110":
+                    return "xori " + registrador2 + ", " + registrador1 + ", " + valor;
+                case "000100":
+                    return "beq " + registrador1 + ", " + registrador2 + ", " + valor;
+                case "000101":
+                    return "bne " + registrador1 + ", " + registrador2 + ", " + valor;
+                case "000110":
+                    return "blez " + registrador1 + ", " + valor;
+                case "000111":
+                    return "bgtz " + registrador1 + ", " + valor;
+                case "001111":
+                    return "lui " + registrador2 + ", " + valor;
+                case "100000":
+                    return "lb " + registrador2 + ", " + valor + "(" + registrador1 + ")";
+                case "100001":
+                    return "lh " + registrador2 + ", " + valor + "(" + registrador1 + ")";
+                case "101000":
+                    return "sb " + registrador2 + ", " + valor + "(" + registrador1 + ")";
+                case "101001":
+                    return "sh " + registrador2 + ", " + valor + "(" + registrador1 + ")";
+            }
             return "Instrução não reconhecida";
         }
+        
 }   
