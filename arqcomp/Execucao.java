@@ -116,45 +116,31 @@ public class Execucao {
             case "11110":
                 return "$s8";
             default:
-                return "ra";
+                return "$ra";
         }
         }
         public static String getFunction (String reg1, String reg2, String reg3, String Shamt, String function){
+            String registrador1 = NumRegistrador(reg1);
+            String registrador2 = NumRegistrador(reg2);
+            String registrador3 = NumRegistrador(reg3);
+            int ra = getShamt(Shamt);
+            int RA = getShamt(Shamt);
             switch (function) {
                 case "000000":
-                    String registrador1 = NumRegistrador(reg1);
-                    String registrador2 = NumRegistrador(reg2);
-                    int ra = getShamt(Shamt);
                     return "sll " + registrador1 + ", "  + registrador2 + ", "  + ra;
                 case "000010":
-                    registrador1 = NumRegistrador(reg1);
-                    registrador2 = NumRegistrador(reg2);
-                    int RA = getShamt(Shamt);
                     return "srl " + registrador1 + ", "  + registrador2 + ", "  + RA;
                 case "001000":
-                    registrador1 = NumRegistrador(reg1);
                     return "jr " + registrador1;
                 case "100000":
-                    registrador1 = NumRegistrador(reg1);
-                    registrador2 = NumRegistrador(reg2);
-                    String registrador3 = NumRegistrador(reg3);
                     return "add " + registrador3 + ", " + registrador1 + ", "  + registrador2;
                 case "100010":
-                    registrador1 = NumRegistrador(reg1);
-                    registrador2 = NumRegistrador(reg2);
-                    registrador3 = NumRegistrador(reg3);
                     return "sub " + registrador3 + ", " + registrador1 + ", "  + registrador2;
-                case "100100":registrador1 = NumRegistrador(reg1);
-                    registrador2 = NumRegistrador(reg2);
-                    registrador3 = NumRegistrador(reg3);
+                case "100100":
                     return "and " + registrador3 + ", " + registrador1 + ", "  + registrador2;
-                case "100101":registrador1 = NumRegistrador(reg1);
-                    registrador2 = NumRegistrador(reg2);
-                    registrador3 = NumRegistrador(reg3);
+                case "100101":
                     return "or " + registrador3 + ", " + registrador1 + ", "  + registrador2;
-                case "100110":registrador1 = NumRegistrador(reg1);
-                    registrador2 = NumRegistrador(reg2);
-                    registrador3 = NumRegistrador(reg3);
+                case "100110":
                     return "xor " + registrador3 + ", " + registrador1 + ", "  + registrador2;
                 default:
                     return"";
