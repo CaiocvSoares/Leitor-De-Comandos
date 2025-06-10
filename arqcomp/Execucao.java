@@ -35,7 +35,7 @@ public class Execucao {
                     return getFunction(reg1, reg2, reg3, shamt, funct);
     
                 case "000010":
-                    int instrucao = Integer.parseInt(new String(array, 6, 26), 2) * 4;
+                    int instrucao = Integer.parseInt(new String(array, 6, 26), 2);
                     return "j " + instrucao;
     
                 default:
